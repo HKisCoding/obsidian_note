@@ -1,0 +1,4 @@
+- Write dockerfile
+- Write build yaml config 
+- Add scripts to: /home/jenkins/jenkins-data/cicd/intelligent/utils/biz-license.sh in server 10.1.1.156
+- Run jenkins
