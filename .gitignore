@@ -1,0 +1,6 @@
+*.json
+Task/
+img/task/
+img/screen_cap/
+img/todo/
+.obsidian/
