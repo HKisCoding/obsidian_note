@@ -1,9 +1,0 @@
-{
-  "citationExportFormat": "biblatex",
-  "literatureNoteTitleTemplate": "{{title}}",
-  "literatureNoteFolder": "3.Papers",
-  "literatureNoteContentTemplate": "\n- **PublishYear**:: {{year}} \n- **Author**:: {{authorString}}\n- **Link**:: {{URL}}\n- **Tags**:: #paper\n- **Cite Key**:: [@{{citekey}}]\n\n### Abstract\n```\n{{abstract}}\n```\n\n### Notes\n{{note}}\n\n---\n\n",
-  "markdownCitationTemplate": "[@{{citekey}}]",
-  "alternativeMarkdownCitationTemplate": "@{{citekey}}",
-  "citationExportPath": "/Users/khoi.vo/Documents/paper/Library/My Library.bib"
-}
