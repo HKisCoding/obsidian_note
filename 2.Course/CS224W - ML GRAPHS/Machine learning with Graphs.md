@@ -1,10 +1,4 @@
-### [COURSE MOC](obsidian://open?vault=Obsidian%20Vault&file=_.MOC%2FCOURSE%20MOC)<BR>
-<h1 style = "border-width:3px; 
-			 border-style:solid; 
-			 border-color:#287EC7; 
-			 padding:3px;
-			width:fit-content">
- Machine learning with Graphs</h1>
+### [COURSE MOC](obsidian://open?vault=obsidian_note&file=_.MOC%2FCOURSE%20MOC)
 
 **Author** :: Jure Leskovec
 **Date** :: 2022
