@@ -1,106 +1,90 @@
-# Month 11: 19.770.000
+# Month 1: 35.381.995
 # Expected: 
-# Balance: 2950K
+# Balance: 4.589K
 
-## 💸 DEBT: 7.365K
-- [x] 🏫 School fee: <span style="color: #0373fc">3.000K</span>
-- [x] :luc_credit_card: Credit card: 4.365K
+## 💸 DEBT: 5.930K
+- [x] :luc_credit_card: Credit card: 2.258K
+- [x] 🎄Christmas dinner pizza 4p: 672K
 
-## :luc_save: Saving: 2000K
+## :luc_save: Saving: 16000K
 
 
 ## 🏦 LOAN:  
-- [ ] Quyền: 35 + 300K + 35K = 370K
+- [x] Quyền: 35 + 300K + 35K + 25k + 160 = 455K
+- [ ] Duy: 3000K
+## 🛫 Travel saving: 2000K
 
 ## 💳 Credit: 
-- Izakaya Ten: 536K
 
-## 👦 Shopping: 2000K (credit) -> 1049K
-- Áo cardigan: 686K
-- Keo vuốt tóc: 265k
-
-## :obs_add_note_glyph: Addition fee: 3.000K -> 2.500K
-- [x] Wedding: 1.500K
-- [ ] Christmas: 500K
-- [ ] Gift cho BP: 200K 
-- [x] Quà anniversary: 230K
-
-## 💌 Daily consumption: Total: 4.700K - Spend: 2431K -> 2269K
-| date  | task                | cost |
-| ----- | ------------------- | ---- |
-| 30/11 | cơm net             | 45K  |
-| 2/12  | Đổ xăng             | 50K  |
-|       | cơm net + nước ngọt | 45K  |
-|       | hớt tóc             | 100K |
-|       | cơm tối             | 35K  |
-|       |                     | 230K |
-|       |                     |      |
-| 3/12  | Ăn sáng             | 120K |
-|       | Cà phê              | 114K |
-|       | bánh canh + trà sữa | 55K  |
-|       |                     | 289K |
-|       |                     |      |
-| 4/12  | Ăn trưa             | 35K  |
-|       | cà phê              | 15K  |
-|       | Bún riêu            | 35K  |
-|       | gửi xe              | 5K   |
-|       |                     | 90K  |
-|       |                     |      |
-| 5/12  | Ăn sáng             | 15K  |
-|       | phở                 | 40K  |
-|       | cà phê              | 15K  |
-|       | cơm tối             | 40K  |
-|       |                     | 110K |
-|       |                     |      |
-| 6/12  | Đổ xăng             | 30K  |
-|       | xôi                 | 20K  |
-|       | Hủ tiếu lòng        | 40K  |
-|       | cà phê              | 15K  |
-|       | Beef steak          | 159K |
-|       | Nước                | 50K  |
-|       |                     | 314K |
-|       |                     |      |
-| 7/12  | Há cảo              | 20K  |
-|       | Cơm trưa            | 40K  |
-|       | cà phê              | 15K  |
-|       | Mua đồ BHX          | 92k  |
-|       |                     | 167k |
-|       |                     |      |
-| 8/12  | Xôi                 | 20K  |
-|       | Cà phê              | 15K  |
-|       | Cơm trưa            | 40K  |
-|       | Đổ xăng             | 50K  |
-|       | Cơm                 | 40K  |
-|       |                     | 165K |
-|       |                     |      |
-| 9/12  | Nước + bánh dứa     | 40K  |
-|       | Ramen               | 246K |
-|       | Mua coin gigamall   | 100K |
-|       |                     | 386K |
-|       |                     |      |
-| 10/12 | Bánh bao            | 15K  |
-|       | Chơi bida           | 80K  |
-|       | Đổ xăng             | 50K  |
-|       | Mua kem nền         | 272K |
-|       |                     | 417K |
-|       |                     |      |
-| 11/12 | Xôi + cà phê        | 30K  |
-|       | hủ tiếu             | 49K  |
-|       |                     | 79K  |
-|       |                     |      |
-| 12/12 | Há cảo + cà phê     | 35K  |
-|       | Cơm gà              | 114K |
-|       | Cơm tối             | 35K  |
-|       |                     | 184K |
-|       |                     |      |
-| 13/12 | bánh bao + cf       | 35K  |
-|       | cơm gà              | 35K  |
-|       | tiền nước uống      | 90K  |
-|       |                     |      |
+## 👦 Shopping: K (credit) -> 
 
 
-## 🧾 Billing ~ 2700K:
+## :obs_add_note_glyph: Addition fee: K -> 
+- [x] Tiền nhậu đầu năm: 523K
+- [x] Mua quà cho embe: 800K
+- [x] Cho mẹ: 6000K
+
+## 💌 Daily consumption: Total: 4.000K - Spend: 2828K -> 1172K
+| date  | activity             | spend        |
+| ----- | -------------------- | ------------ |
+| 29/12 | Mua quà cho cô Huệ   | 320K         |
+|       |                      | **==320K==** |
+| 30/12 | bida                 | 30K          |
+|       | cầu lông             | 156K         |
+|       | Bún chả              | 50K          |
+|       |                      | **==236K==** |
+| 31/12 | Dao cạo râu + bò húc | 40K          |
+|       |                      | **==40K==**  |
+| 1/1   | Ăn cơm niêu          | 150K         |
+|       | Mua đồ ministop      | 50K          |
+|       |                      | **==200K==** |
+| 2/1   | Cà phê               | 15K          |
+|       | Bún chả              | 50K          |
+|       |                      | **==65K==**  |
+| 3/1   | Há cảo               | 20K          |
+|       | Hủ tiếu pi thái      | 111K         |
+|       | Đổ xăng              | 50K          |
+|       |                      | **==181K==** |
+| 4/1   | Xôi gà               | 20K          |
+|       | Cơm gà               | 45K          |
+|       | Cơm trưa             | 30K          |
+|       |                      | **==95K==**  |
+| 5/1   | Xôi                  | 15K          |
+|       | phở                  | 40K          |
+|       | cơm gà               | 40K          |
+|       |                      | **==95K==**  |
+| 6/1   | bánh giò             | 14K          |
+|       | cơm trưa             | 35K          |
+|       | sinh tố              | 20K          |
+|       | Kem                  | 114K         |
+|       |                      | **==183K==** |
+| 7/1   | đổ xăng              | 50K          |
+|       | photo đề             | 20K          |
+|       | Mì quán net          | 30K          |
+|       | Nạp net              | 50K          |
+|       | Cắt tóc + gội đầu    | 180K         |
+|       | Nước bà gìa          | 15K          |
+|       | Cầu lông             | 230K         |
+|       | Xôi + nước           | 27K          |
+|       |                      | **==602K==** |
+| 8/1   | xôi                  | 20K          |
+|       | cà phê               | 15K          |
+|       | cà phê muối          | 53K          |
+|       |                      | **==88K==**          |
+| 9/1   | há cảo               | 20K          |
+|       | cơm trưa             | 35K          |
+|       | cơm hải sản          | 40K          |
+|       | rửa xe               | 30K          |
+|       |                      | **==125K==**         |
+| 10/1  | cà phê               | 15K          |
+|       | phở                  | 40K          |
+|       | cơm gà               | 35K          |
+|       | snuffbox             | 508K         |
+|       |                      | **==598k==**             |
+
+
+## 🧾 Billing ~ 2K:
 - [x] Wifi: 70K 
-- [x] Electricity: <span style="color: #0373fc"></span> 313K
-- [x] Water + Parking + Apartment fee :  -> 218K
+- [x] Electricity: <span style="color: #0373fc"></span>160K
+- [x] Water + Parking + Apartment fee :  -> 220K
 - [x] House rent: <span style="color: #0373fc">2.170K</span>
