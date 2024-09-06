@@ -156,7 +156,7 @@ $$
 
 For every inner-loop update step, the generator produce the learning rate and regularization hyper-parameters, which they are used to control the direction and magnitude of the weight update.
 
-To train the network $g_\phi$, the outer-loop optimization using new examples $D'_i$ and task-adapted weights $\theta'_i$ is performed as in:
+To train the network $g_\phi$, the outer-loop optimization using new examples $D'_i$ and task-adapted weights $\theta'_i$ is performed as in $\nabla_\phi$:
 
 $$
 	\phi \leftarrow \phi - \eta \nabla_\phi \sum_{T_i} L_{D'_i}(f_{\theta'_i})
