@@ -148,7 +148,7 @@ $$
 the adaptation process via the hyperparameters in the inner-loop update equation, which are scalar constants of **learning rate $\alpha$** and regularization hyperparameter $β = 1 - \alpha\lambda$ 
 
 For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau} _{i, j}=\left[\nabla _{\boldsymbol{\theta}}\mathcal{L} _{\mathcal{T}_i}^{\mathcal{D}_i}\left(f _{\boldsymbol{\theta} _{i, j}}\right),\boldsymbol{\theta} _{i, j}\right]$
-The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇ _θ L^{D_i} _{T_i}$. 
+The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α _{i,j}$ and $β _{i,j}$ using the current parameters $θ _{i,j}$ and its gradients $∇ _θ L^{D_i} _{T_i}$. 
 
 $$
 	\left(\boldsymbol{\alpha} _{i, j}, \boldsymbol{\beta} _{i, j}\right)=g _{\boldsymbol{\phi}}\left(\boldsymbol{\tau} _{i, j}\right) .
@@ -159,7 +159,7 @@ For every inner-loop update step, the generator produce the learning rate and re
 To train the network $g_\phi$, the outer-loop optimization using new examples $D'_i$ and task-adapted weights $\theta'_i$ is performed as in:
 
 $$
-	\phi \leftarrow \phi - \eta \nabla _{\phi} \sum_{T_i} L_{D'_i}(f_{\theta'_i})
+	\phi \leftarrow \phi - \eta \nabla _{\phi} \sum _{T_i} L _{D'_i}(f _{\theta'_i})
 $$
 
 #### Implementing:
