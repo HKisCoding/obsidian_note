@@ -139,10 +139,10 @@ Introduce a small meta-network that can adaptively generate per-step hyper-param
 With a $l2$ regularization added to the loss function, the inner loop update: 
 
 $$
-\begin{aligned}
-\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha \left(\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i} \left(f_{\boldsymbol{\theta}_{i, j}}\right) + \lambda \boldsymbol{\theta}_{i, j}\right)\\
-& =\beta \boldsymbol{\theta}_{i, j} - \alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i} \left(f_{\boldsymbol{\theta}_{i, j}}\right)
-\end{aligned}
+	\begin{aligned}
+	\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha \left(\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i} \left(f_{\boldsymbol{\theta}_{i, j}}\right) + \lambda \boldsymbol{\theta}_{i, j}\right)\\
+	& =\beta \boldsymbol{\theta}_{i, j} - \alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i} \left(f_{\boldsymbol{\theta}_{i, j}}\right)
+	\end{aligned}
 $$
 
 the adaptation process via the hyperparameters in the inner-loop update equation, which are scalar constants of **learning rate $\alpha$** and regularization hyperparameter $β = 1 - \alpha\lambda$ 
@@ -151,7 +151,7 @@ For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol
 The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇_θ L^{D_i}_{T_i}$. 
 
 $$
-\left(\boldsymbol{\alpha}_{i, j}, \boldsymbol{\beta}_{i, j}\right)=g_{\boldsymbol{\phi}}\left(\boldsymbol{\tau}_{i, j}\right) .
+	\left(\boldsymbol{\alpha}_{i, j}, \boldsymbol{\beta}_{i, j}\right)=g_{\boldsymbol{\phi}}\left(\boldsymbol{\tau}_{i, j}\right) .
 $$
 
 For every inner-loop update step, the generator produce the learning rate and regularization hyper-parameters, which they are used to control the direction and magnitude of the weight update.
@@ -159,7 +159,7 @@ For every inner-loop update step, the generator produce the learning rate and re
 To train the network $g_\phi$, the outer-loop optimization using new examples $D'_i$ and task-adapted weights $\theta'_i$ is performed as in:
 
 $$
-\phi \leftarrow \phi - \eta \nabla_\phi \sum_{T_i} L_{D'_i}(f_{\theta'_i})
+	\phi \leftarrow \phi - \eta \nabla_\phi \sum_{T_i} L_{D'_i}(f_{\theta'_i})
 $$
 
 #### Implementing:
