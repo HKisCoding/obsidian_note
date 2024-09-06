@@ -208,6 +208,7 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 |                                                                                     | prokaryotic | 0.468 | 0.181 | 0.711  |
 
 # To do:
+- Testing on multiple Gaussian scale
 - Research multi-view clustering approach
 - Optimize meta learning cluster with better adaptive loss: 
 Tuning K for clustering: https://www.sciencedirect.com/science/article/abs/pii/S0950705120301209
