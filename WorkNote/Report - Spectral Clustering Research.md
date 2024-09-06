@@ -96,7 +96,7 @@ Final Output: $Y = Y' \times \sqrt{m}(L^{-1})^T$  with $L$ is obtained from the 
 With the output is approximate to a true eigenvector, the loss function is rewritten as: 
 
 $$
-L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} \operatorname{trace}\left(Y^T(D-W) Y\right)
+	L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} \operatorname{trace}\left(Y^T(D-W) Y\right)
 $$
 
 for general $k$, under the constraint, the minimum is attained when the column space of $Y$ is the subspace of the $k$ eigenvectors corresponding to the smallest $k$ eigenvalues of $D − W$ .
