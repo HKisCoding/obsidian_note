@@ -34,17 +34,21 @@ https://stats.stackexchange.com/questions/459640/why-eigenvectors-reveal-the-gro
 ### Constructing similarity graph:
 #### 1. Fully connected graph:
 Using Gaussian similarity function
+
 $$
 s_{i j}=\exp \left(-\frac{d\left(x_i, x_j\right)^2}{2 \sigma^2}\right)
 $$
+
 #### 2. Sparse Graph
 
 Construct the k-nearest neighbor graph:
 - One-side k-nearest neighbors: Given two vertices $v_i$ and $v_j$. If any of them is one of the k-nearest neighbors of the other point, they are connected.  
 - Two-side k-nearest neighbors: Given two vertices  $v_i$ and $v_j$. If vi is one of the k-nearest neighbors of  $v_i$ and $v_j$ is also one of the k-nearest neighbors of vi, they are connected.
+
 $$
 s_{i j}=\frac{d_{i, k+1}-d_{i j}}{k d_{i, k+1}-\sum_{j=1}^k d_{i j}}, j=1, \cdots, k
 $$
+
 
 # SpectralNet overview
 
@@ -65,14 +69,18 @@ Points $x, x'$ similar to each other will have large $w(x, x')$ and embedded clo
 Embedding $y_i = F_\theta (x_i)$ with $y_i \in R^k$
 
 Loss function: 
+
 $$
 L_{\text {SpectralNet }}(\theta)=\frac{1}{m^2} \sum_{i, j=1}^m W_{i, j}\left\|y_i-y_j\right\|^2
 $$
+
 with  $m$: samples in a minibatch from distribution $D$
 With the constraint of orthonormal: 
+
 $$
 \mathbb{E}\left[y y^T\right]=I_{k \times k}
 $$
+
 For a minibatch: $\frac{1}{m} Y^T Y=I_{k \times k}, Y \in m \times k$
 
 #### Implement: 
@@ -86,23 +94,29 @@ Based on the Cholesky decomposition $A^T A = LL^T$, => $Q= A(L^{-1})^T$
 Final Output: $Y = Y' \times \sqrt{m}(L^{-1})^T$  with $L$ is obtained from the Cholesky decomposition of  $Y$
 
 With the output is approximate to a true eigenvector, the loss function is rewritten as: 
+
 $$
 L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} \operatorname{trace}\left(Y^T(D-W) Y\right)
 $$
+
 for general $k$, under the constraint, the minimum is attained when the column space of $Y$ is the subspace of the $k$ eigenvectors corresponding to the smallest $k$ eigenvalues of $D − W$ .
 
 #### Building affinity matrix:
 
 - Gaussian kernel: For a set of nearest neighbor pairs: 
+
 $$
 W_{i, j}= \begin{cases}\exp \left(-\frac{\left\|x_i-x_j\right\|^2}{2 \sigma^2}\right), & x_j \text { is among the nearest neighbors of } x_i \\ 0, & \text { otherwise, }\end{cases}
 $$
+
 - Siamese network: Neuron network trained on a collection of similar (positive) and dissimilar (negative) pairs of data points. By labeling $(x_i, x_j)$ is positive if $|| x_i - x_j||$ is small and negative otherwise 
 	=>  Siamese network, therefore, is trained to learn an adaptive nearest neighbor metric.
 	Siamese network, therefore, is trained to learn an adaptive nearest neighbor metric.
+	
 $$
 L_{\text {siamese }}\left(\theta_{\text {siamese }} ; x_i, x_j\right)= \begin{cases}\left\|z_i-z_j\right\|^2, & \left(x_i, x_j\right) \text { is a positive pair } \\ \max \left(c-\left\|z_i-z_j\right\|, 0\right)^2, & \left(x_i, x_j\right) \text { is a negative pair }\end{cases}
 $$
+
 Objective is to minimize contrastive loss
 After training, the Siamese net is used to define a batch affinity matrix for Spectral Net
 
@@ -122,13 +136,16 @@ $$
 & =\beta \boldsymbol{\theta}_{i, j}-\alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)
 \end{aligned}
 $$
+
 the adaptation process via the hyperparameters in the inner-loop update equation, which are scalar constants of **learning rate $\alpha$** and regularization hyperparameter $β = 1 - \alpha\lambda$ 
 
 For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau}_{i, j}=\left[\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right), \boldsymbol{\theta}_{i, j}\right]$
 The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇_θ L^{D_i}_{T_i}$. 
+
 $$
 \left(\boldsymbol{\alpha}_{i, j}, \boldsymbol{\beta}_{i, j}\right)=g_{\boldsymbol{\phi}}\left(\boldsymbol{\tau}_{i, j}\right) .
 $$
+
 For every inner-loop update step, the generator produce the learning rate and regularization hyper-parameters, which they are used to control the direction and magnitude of the weight update.
 
 To train the network $g_\phi$, the outer-loop optimization using new examples $D'_i$ and task-adapted weights $\theta'_i$ is performed as in:
@@ -136,6 +153,7 @@ To train the network $g_\phi$, the outer-loop optimization using new examples $D
 $$
 \phi \leftarrow \phi - \eta \nabla_\phi \sum_{T_i} L_{D'_i}(f_{\theta'_i})
 $$
+
 #### Implementing:
 Generator network $g_φ$ is a 3-layer MLP with ReLU activation between the layers.
 The task specific learning state is reduce into layer-wise mean of gradients and weights thus resulting in 2 state values per layer.
