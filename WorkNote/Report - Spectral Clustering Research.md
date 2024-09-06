@@ -140,8 +140,8 @@ With a $l2$ regularization added to the loss function, the inner loop update:
 
 $$
 \begin{aligned}
-\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)+\lambda\boldsymbol{\theta}_{i, j}\right)\\
-& =\beta \boldsymbol{\theta}_{i, j}-\alpha\nabla_{\boldsymbol{\theta}}\mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)
+\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha \left(\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i} \left(f_{\boldsymbol{\theta}_{i, j}}\right) + \lambda \boldsymbol{\theta}_{i, j}\right)\\
+& =\beta \boldsymbol{\theta}_{i, j} - \alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i} \left(f_{\boldsymbol{\theta}_{i, j}}\right)
 \end{aligned}
 $$
 
