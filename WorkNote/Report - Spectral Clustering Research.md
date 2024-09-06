@@ -96,7 +96,7 @@ Final Output: $Y = Y' \times \sqrt{m}(L^{-1})^T$  with $L$ is obtained from the 
 With the output is approximate to a true eigenvector, the loss function is rewritten as: 
 
 $$
-	L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} \operatorname{trace}\left(Y^T(D-W) Y\right)
+	L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} {trace}\left(Y^T(D-W) Y\right)
 $$
 
 for general $k$, under the constraint, the minimum is attained when the column space of $Y$ is the subspace of the $k$ eigenvectors corresponding to the smallest $k$ eigenvalues of $D − W$ .
@@ -140,14 +140,14 @@ With a $l2$ regularization added to the loss function, the inner loop update:
 
 $$
 \begin{aligned}
-\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha\left(\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)+\lambda \boldsymbol{\theta}_{i, j}\right) \\
-& =\beta \boldsymbol{\theta}_{i, j}-\alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)
+\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)+\lambda\boldsymbol{\theta}_{i, j}\right)\\
+& =\beta \boldsymbol{\theta}_{i, j}-\alpha\nabla_{\boldsymbol{\theta}}\mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)
 \end{aligned}
 $$
 
 the adaptation process via the hyperparameters in the inner-loop update equation, which are scalar constants of **learning rate $\alpha$** and regularization hyperparameter $β = 1 - \alpha\lambda$ 
 
-For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau}_{i, j}=\left[\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right), \boldsymbol{\theta}_{i, j}\right]$
+For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau}_{i, j}=\left[\nabla_{\boldsymbol{\theta}}\mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right),\boldsymbol{\theta}_{i, j}\right]$
 The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇_θ L^{D_i}_{T_i}$. 
 
 $$
