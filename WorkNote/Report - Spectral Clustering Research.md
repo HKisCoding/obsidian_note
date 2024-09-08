@@ -93,6 +93,11 @@ Based on the Cholesky decomposition $A^T A = LL^T$, => $Q= A(L^{-1})^T$
 
 Final Output: $Y = Y' \times \sqrt{m}(L^{-1})^T$  with $L$ is obtained from the Cholesky decomposition of  $Y$
 
+> [!note] For each vector $(f1, ⋯, fn)′ = f ∈ Rn$, we have
+> $$
+f^{\prime} L_{s y m} f=\frac{1}{2} \sum_{i, j=1}^n w_{i j}\left(\frac{f_i}{\sqrt{d_i}}-\frac{f_j}{\sqrt{d_j}}\right)^2
+$$
+
 With the output is approximate to a true eigenvector, the loss function is rewritten as: 
 
 $$
@@ -225,14 +230,16 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 
 ## Result
 
+### Comparison on multiple methodologies
+
 | Method                                                                              | Dataset     | ACC   | NMI   | PURITY |
 | ----------------------------------------------------------------------------------- | ----------- | ----- | ----- | ------ |
 | Using Resnet18 as Feature Extractor<br>\+ Siamese Net                               | MRSC        | 0.868 | 0.882 | 0.901  |
-|                                                                                     | MNIST       |       |       |        |
+|                                                                                     | MNIST       | 0.836 | 0.892 | 0.933  |
 |                                                                                     | Caltech-101 | 0.332 | 0.601 | 0.401  |
 |                                                                                     | prokaryotic | 0.35  | 0.312 | 0.579  |
 | Using Resnet18 as Feature Extractor<br>\+ Using Gaussian scale: 20 nearest neighbor | MRSC        | 0.669 | 0.806 | 0.899  |
-|                                                                                     | MNIST       |       |       |        |
+|                                                                                     | MNIST       | 0.646 | 0.778 | 0.927  |
 |                                                                                     | Caltech-101 | 0.364 | 0.581 | 0.396  |
 |                                                                                     | prokaryotic | 0.339 | 0.18  | 0.526  |
 | Using Resnet18 as Feature Extractor<br>\+ Using Gaussian scale: all dataset         | MRSC        | 0.794 | 0.856 | 0.895  |
@@ -240,9 +247,34 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 |                                                                                     | Caltech-101 | 0.33  | 0.593 | 0.374  |
 |                                                                                     | prokaryotic |       |       |        |
 | Using Resnet18 as Feature Extractor<br>\+ Meta learning to find Gaussian scale      | MRSC        | 0.493 | 0.495 | 0.535  |
-|                                                                                     | MNIST       |       |       |        |
+|                                                                                     | MNIST       | 0.47  | 0.389 | 0.533  |
 |                                                                                     | Caltech-101 | 0.121 | 0.272 | 0.464  |
 |                                                                                     | prokaryotic | 0.468 | 0.181 | 0.711  |
+
+Except for `prokaryotic` dataset, Meta learning performed worse than all other approaches. 
+Not work on image dataset
+### Comparison on the affect of selecting Gaussian scale
+- **prokaryotic:**
+
+| gauss_scale   | acc   | nmi   | purity |
+| ------------- | ----- | ----- | ------ |
+| 5             | 0.541 | 0.451 | 0.77   |
+| 10            | 0.534 | 0.279 | 0.789  |
+| 20            | 0.55  | 0.459 | 0.78   |
+| 30            | 0.539 | 0.464 | 0.775  |
+| 50            | 0.544 | 0.429 | 0.77   |
+| full neighbor | 0.559 | 0.46  | 0.791  |
+- **MRSC**:
+
+|gauss_scale|acc|nmi|purity|
+|---|---|---|---|
+|5|0.671|0.797|0.897|
+|10|0.73|0.836|0.897|
+|20|0.667|0.796|0.895|
+|30|0.669|0.812|0.904|
+|50|0.735|0.839|0.901|
+|Full neightbor|0.73|0.842|0.897|
+
 
 # To do:
 - Testing on multiple Gaussian scale
