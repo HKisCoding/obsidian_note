@@ -52,6 +52,26 @@ $$
 
 # SpectralNet overview
 
+```
+@inproceedings{DBLP:conf/iclr/ShahamSLBNK18,
+  author       = {Uri Shaham and
+                  Kelly P. Stanton and
+                  Henry Li and
+                  Ronen Basri and
+                  Boaz Nadler and
+                  Yuval Kluger},
+  title        = {SpectralNet: Spectral Clustering using Deep Neural Networks},
+  booktitle    = {6th International Conference on Learning Representations, {ICLR} 2018,
+                  Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings},
+  publisher    = {OpenReview.net},
+  year         = {2018},
+  url          = {https://openreview.net/forum?id=HJ\_aoCyRZ},
+  timestamp    = {Mon, 09 Jan 2023 08:09:25 +0100},
+  biburl       = {https://dblp.org/rec/conf/iclr/ShahamSLBNK18.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+
 #### Motivation: 
 Traditional spectral clustering methods have problems of scalability and generalization of the spectral embedding
 SpectralNet: learns a map that embeds input data points into the eigenspace of their associated graph Laplacian matrix and subsequently clusters them. 
@@ -136,6 +156,30 @@ After training, the Siamese net is used to define a batch affinity matrix for Sp
 # Meta learning overview
 ### Adaptive Meta learning for tuning hyperparameters
 
+```
+@inproceedings{DBLP:conf/nips/BaikCCKL20,
+  author       = {Sungyong Baik and
+                  Myungsub Choi and
+                  Janghoon Choi and
+                  Heewon Kim and
+                  Kyoung Mu Lee},
+  editor       = {Hugo Larochelle and
+                  Marc'Aurelio Ranzato and
+                  Raia Hadsell and
+                  Maria{-}Florina Balcan and
+                  Hsuan{-}Tien Lin},
+  title        = {Meta-Learning with Adaptive Hyperparameters},
+  booktitle    = {Advances in Neural Information Processing Systems 33: Annual Conference
+                  on Neural Information Processing Systems 2020, NeurIPS 2020, December
+                  6-12, 2020, virtual},
+  year         = {2020},
+  url          = {https://proceedings.neurips.cc/paper/2020/hash/ee89223a2b625b5152132ed77abbcc79-Abstract.html},
+  timestamp    = {Tue, 19 Jan 2021 15:57:41 +0100},
+  biburl       = {https://dblp.org/rec/conf/nips/BaikCCKL20.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+
 Propose Adaptive Learning of hyperparameters for Fast Adaptation that enables training to be more effective with task-conditioned inner-loop updates from any given initialization.
 #### Motivation:
 Fast adaptation when test task is different from train task 
@@ -198,6 +242,8 @@ Architecture: 3 linear layer with LeakyRelu() activation. The last layer output 
 $$
 	scale = \frac{1}{m}(\sum_{i = 0}^m{F_{meta}(x_i)})
 $$
+> [!note] 
+> Using stastiscal: variance, std to calculate scale
 ## Experiment
 
 Dataset:
@@ -232,6 +278,14 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 
 ### Comparison on multiple methodologies
 
+>[!note]
+>Comparion on multiple feature extractor: resnet, vgg,...
+>Comparison on tabluar (5) and image (5): 
+>	- tablular: ’Colon Cancer’(Alon et al. (1999)) and ’Leukemia’(Golub et al. (1999)) 	
+>Comparison in multple distance metrics
+
+
+
 | Method                                                                              | Dataset     | ACC   | NMI   | PURITY |
 | ----------------------------------------------------------------------------------- | ----------- | ----- | ----- | ------ |
 | Using Resnet18 as Feature Extractor<br>\+ Siamese Net                               | MRSC        | 0.868 | 0.882 | 0.901  |
@@ -254,6 +308,7 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 Except for `prokaryotic` dataset, Meta learning performed worse than all other approaches. 
 Not work on image dataset
 ### Comparison on the affect of selecting Gaussian scale
+Nearest neighbor: 100
 - **prokaryotic:**
 
 | gauss_scale   | acc   | nmi   | purity |
