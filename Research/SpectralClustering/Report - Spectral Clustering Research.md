@@ -69,7 +69,8 @@ $$
 L_{\text {SpectralNet }}(\theta)=\frac{1}{m^2} \sum_{i, j=1}^m W_{i, j}\left\|y_i-y_j\right\|^2
 $$
 with  $m$: samples in a minibatch from distribution $D$
-With the constraint of orthonormal: $$
+With the constraint of orthonormal: 
+$$
 \mathbb{E}\left[y y^T\right]=I_{k \times k}
 $$
 For a minibatch: $\frac{1}{m} Y^T Y=I_{k \times k}, Y \in m \times k$
@@ -92,13 +93,14 @@ for general $k$, under the constraint, the minimum is attained when the column s
 
 #### Building affinity matrix:
 
-- Gaussian kernel: For a set of nearest neighbor pairs: $$
+- Gaussian kernel: For a set of nearest neighbor pairs: 
+$$
 W_{i, j}= \begin{cases}\exp \left(-\frac{\left\|x_i-x_j\right\|^2}{2 \sigma^2}\right), & x_j \text { is among the nearest neighbors of } x_i \\ 0, & \text { otherwise, }\end{cases}
 $$
 - Siamese network: Neuron network trained on a collection of similar (positive) and dissimilar (negative) pairs of data points. By labeling $(x_i, x_j)$ is positive if $|| x_i - x_j||$ is small and negative otherwise 
 	=>  Siamese network, therefore, is trained to learn an adaptive nearest neighbor metric.
 	Siamese network, therefore, is trained to learn an adaptive nearest neighbor metric.
-	$$
+$$
 L_{\text {siamese }}\left(\theta_{\text {siamese }} ; x_i, x_j\right)= \begin{cases}\left\|z_i-z_j\right\|^2, & \left(x_i, x_j\right) \text { is a positive pair } \\ \max \left(c-\left\|z_i-z_j\right\|, 0\right)^2, & \left(x_i, x_j\right) \text { is a negative pair }\end{cases}
 $$
 Objective is to minimize contrastive loss
@@ -122,7 +124,8 @@ $$
 the adaptation process via the hyperparameters in the inner-loop update equation, which are scalar constants of **learning rate $\alpha$** and regularization hyperparameter $β = 1 - \alpha\lambda$ 
 
 For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau}_{i, j}=\left[\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right), \boldsymbol{\theta}_{i, j}\right]$
-The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇_θ L^{D_i}_{T_i}$. $$
+The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇_θ L^{D_i}_{T_i}$. 
+$$
 \left(\boldsymbol{\alpha}_{i, j}, \boldsymbol{\beta}_{i, j}\right)=g_{\boldsymbol{\phi}}\left(\boldsymbol{\tau}_{i, j}\right) .
 $$
 For every inner-loop update step, the generator produce the learning rate and regularization hyper-parameters, which they are used to control the direction and magnitude of the weight update.
