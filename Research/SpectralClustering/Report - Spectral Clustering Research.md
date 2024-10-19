@@ -34,19 +34,43 @@ https://stats.stackexchange.com/questions/459640/why-eigenvectors-reveal-the-gro
 ### Constructing similarity graph:
 #### 1. Fully connected graph:
 Using Gaussian similarity function
+
 $$
 s_{i j}=\exp \left(-\frac{d\left(x_i, x_j\right)^2}{2 \sigma^2}\right)
 $$
+
 #### 2. Sparse Graph
 
 Construct the k-nearest neighbor graph:
 - One-side k-nearest neighbors: Given two vertices $v_i$ and $v_j$. If any of them is one of the k-nearest neighbors of the other point, they are connected.  
 - Two-side k-nearest neighbors: Given two vertices  $v_i$ and $v_j$. If vi is one of the k-nearest neighbors of  $v_i$ and $v_j$ is also one of the k-nearest neighbors of vi, they are connected.
+
 $$
 s_{i j}=\frac{d_{i, k+1}-d_{i j}}{k d_{i, k+1}-\sum_{j=1}^k d_{i j}}, j=1, \cdots, k
 $$
 
+
 # SpectralNet overview
+
+```
+@inproceedings{DBLP:conf/iclr/ShahamSLBNK18,
+  author       = {Uri Shaham and
+                  Kelly P. Stanton and
+                  Henry Li and
+                  Ronen Basri and
+                  Boaz Nadler and
+                  Yuval Kluger},
+  title        = {SpectralNet: Spectral Clustering using Deep Neural Networks},
+  booktitle    = {6th International Conference on Learning Representations, {ICLR} 2018,
+                  Vancouver, BC, Canada, April 30 - May 3, 2018, Conference Track Proceedings},
+  publisher    = {OpenReview.net},
+  year         = {2018},
+  url          = {https://openreview.net/forum?id=HJ\_aoCyRZ},
+  timestamp    = {Mon, 09 Jan 2023 08:09:25 +0100},
+  biburl       = {https://dblp.org/rec/conf/iclr/ShahamSLBNK18.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
 
 #### Motivation: 
 Traditional spectral clustering methods have problems of scalability and generalization of the spectral embedding
@@ -65,14 +89,18 @@ Points $x, x'$ similar to each other will have large $w(x, x')$ and embedded clo
 Embedding $y_i = F_\theta (x_i)$ with $y_i \in R^k$
 
 Loss function: 
+
 $$
 L_{\text {SpectralNet }}(\theta)=\frac{1}{m^2} \sum_{i, j=1}^m W_{i, j}\left\|y_i-y_j\right\|^2
 $$
+
 with  $m$: samples in a minibatch from distribution $D$
 With the constraint of orthonormal: 
+
 $$
 \mathbb{E}\left[y y^T\right]=I_{k \times k}
 $$
+
 For a minibatch: $\frac{1}{m} Y^T Y=I_{k \times k}, Y \in m \times k$
 
 #### Implement: 
@@ -85,29 +113,72 @@ Based on the Cholesky decomposition $A^T A = LL^T$, => $Q= A(L^{-1})^T$
 
 Final Output: $Y = Y' \times \sqrt{m}(L^{-1})^T$  with $L$ is obtained from the Cholesky decomposition of  $Y$
 
+> [!note] For each vector $(f1, ⋯, fn)′ = f ∈ Rn$, we have
+> $$
+f^{\prime} L_{s y m} f=\frac{1}{2} \sum_{i, j=1}^n w_{i j}\left(\frac{f_i}{\sqrt{d_i}}-\frac{f_j}{\sqrt{d_j}}\right)^2
+$$
+
 With the output is approximate to a true eigenvector, the loss function is rewritten as: 
+
 $$
-L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} \operatorname{trace}\left(Y^T(D-W) Y\right)
+	L_{\text {SpectralNet }}(\theta)=\frac{2}{m^2} {trace}\left(Y^T(D-W) Y\right)
 $$
+
 for general $k$, under the constraint, the minimum is attained when the column space of $Y$ is the subspace of the $k$ eigenvectors corresponding to the smallest $k$ eigenvalues of $D − W$ .
 
 #### Building affinity matrix:
 
 - Gaussian kernel: For a set of nearest neighbor pairs: 
+
 $$
-W_{i, j}= \begin{cases}\exp \left(-\frac{\left\|x_i-x_j\right\|^2}{2 \sigma^2}\right), & x_j \text { is among the nearest neighbors of } x_i \\ 0, & \text { otherwise, }\end{cases}
+W_{i, j}= 
+\begin{cases}
+\exp \left(-\frac{\left\|x_i-x_j\right\|^2}{2 \sigma^2}\right), & x_j \text { is among the nearest neighbors of } x_i \\ 
+0, & \text { otherwise, }
+\end{cases}
 $$
+
 - Siamese network: Neuron network trained on a collection of similar (positive) and dissimilar (negative) pairs of data points. By labeling $(x_i, x_j)$ is positive if $|| x_i - x_j||$ is small and negative otherwise 
 	=>  Siamese network, therefore, is trained to learn an adaptive nearest neighbor metric.
 	Siamese network, therefore, is trained to learn an adaptive nearest neighbor metric.
+	
 $$
-L_{\text {siamese }}\left(\theta_{\text {siamese }} ; x_i, x_j\right)= \begin{cases}\left\|z_i-z_j\right\|^2, & \left(x_i, x_j\right) \text { is a positive pair } \\ \max \left(c-\left\|z_i-z_j\right\|, 0\right)^2, & \left(x_i, x_j\right) \text { is a negative pair }\end{cases}
+L_{\text {siamese }}\left(\theta_{\text {siamese }} ; x_i, x_j\right)= 
+\begin{cases}
+\left\|z_i-z_j\right\|^2, & \left(x_i, x_j\right) \text { is a positive pair } \\ 
+\max \left(c-\left\|z_i-z_j\right\|, 0\right)^2, & \left(x_i, x_j\right) \text { is a negative pair }
+\end{cases}
 $$
+
 Objective is to minimize contrastive loss
 After training, the Siamese net is used to define a batch affinity matrix for Spectral Net
 
 # Meta learning overview
 ### Adaptive Meta learning for tuning hyperparameters
+
+```
+@inproceedings{DBLP:conf/nips/BaikCCKL20,
+  author       = {Sungyong Baik and
+                  Myungsub Choi and
+                  Janghoon Choi and
+                  Heewon Kim and
+                  Kyoung Mu Lee},
+  editor       = {Hugo Larochelle and
+                  Marc'Aurelio Ranzato and
+                  Raia Hadsell and
+                  Maria{-}Florina Balcan and
+                  Hsuan{-}Tien Lin},
+  title        = {Meta-Learning with Adaptive Hyperparameters},
+  booktitle    = {Advances in Neural Information Processing Systems 33: Annual Conference
+                  on Neural Information Processing Systems 2020, NeurIPS 2020, December
+                  6-12, 2020, virtual},
+  year         = {2020},
+  url          = {https://proceedings.neurips.cc/paper/2020/hash/ee89223a2b625b5152132ed77abbcc79-Abstract.html},
+  timestamp    = {Tue, 19 Jan 2021 15:57:41 +0100},
+  biburl       = {https://dblp.org/rec/conf/nips/BaikCCKL20.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
 
 Propose Adaptive Learning of hyperparameters for Fast Adaptation that enables training to be more effective with task-conditioned inner-loop updates from any given initialization.
 #### Motivation:
@@ -115,24 +186,31 @@ Fast adaptation when test task is different from train task
 Introduce a small meta-network that can adaptively generate per-step hyper-parameters: learning rate and weight decay coefficients.
 #### Methodology:
 With a $l2$ regularization added to the loss function, the inner loop update: 
+
 $$
-\begin{aligned}
-\boldsymbol{\theta}_{i, j+1} & =\boldsymbol{\theta}_{i, j}-\alpha\left(\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)+\lambda \boldsymbol{\theta}_{i, j}\right) \\
-& =\beta \boldsymbol{\theta}_{i, j}-\alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right)
-\end{aligned}
+	\begin{aligned}
+	\boldsymbol{\theta} _{i, j+1} & =\boldsymbol{\theta} _{i, j}-\alpha \left(\nabla _{\boldsymbol{\theta}} \mathcal{L} _{\mathcal{T}_i}^{\mathcal{D}_i} \left(f _{\boldsymbol{\theta} _{i, j}}\right) + \lambda \boldsymbol{\theta} _{i, j}\right)\\
+	& =\beta \boldsymbol{\theta} _{i, j} - \alpha \nabla _{\boldsymbol{\theta}} \mathcal{L} _{\mathcal{T}_i}^{\mathcal{D}_i} \left(f _{\boldsymbol{\theta} _{i, j}}\right)
+	\end{aligned}
 $$
+
 the adaptation process via the hyperparameters in the inner-loop update equation, which are scalar constants of **learning rate $\alpha$** and regularization hyperparameter $β = 1 - \alpha\lambda$ 
 
-For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau}_{i, j}=\left[\nabla_{\boldsymbol{\theta}} \mathcal{L}_{\mathcal{T}_i}^{\mathcal{D}_i}\left(f_{\boldsymbol{\theta}_{i, j}}\right), \boldsymbol{\theta}_{i, j}\right]$
-The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α_{i,j}$ and $β_{i,j}$ using the current parameters $θ_{i,j}$ and its gradients $∇_θ L^{D_i}_{T_i}$. 
+For task $T_i$ at time step j, The learning state can be defined as $\boldsymbol{\tau} _{i, j}=\left[\nabla _{\boldsymbol{\theta}}\mathcal{L} _{\mathcal{T}_i}^{\mathcal{D}_i}\left(f _{\boldsymbol{\theta} _{i, j}}\right),\boldsymbol{\theta} _{i, j}\right]$
+The proposed meta-learner $g_φ$ generates the adaptive hyperparameters $α _{i,j}$ and $β _{i,j}$ using the current parameters $θ _{i,j}$ and its gradients $∇ _θ L^{D_i} _{T_i}$. 
+
 $$
-\left(\boldsymbol{\alpha}_{i, j}, \boldsymbol{\beta}_{i, j}\right)=g_{\boldsymbol{\phi}}\left(\boldsymbol{\tau}_{i, j}\right) .
+	\left(\boldsymbol{\alpha} _{i, j}, \boldsymbol{\beta} _{i, j}\right)=g _{\boldsymbol{\phi}}\left(\boldsymbol{\tau} _{i, j}\right) .
 $$
+
 For every inner-loop update step, the generator produce the learning rate and regularization hyper-parameters, which they are used to control the direction and magnitude of the weight update.
 
 To train the network $g_\phi$, the outer-loop optimization using new examples $D'_i$ and task-adapted weights $\theta'_i$ is performed as in:
 
-$$\phi \leftarrow \phi - \eta \nabla_\phi \sum_{T_i} L_{D'_i}(f_{\theta'_i})$$
+$$
+	\phi \leftarrow \phi - \eta \nabla _{\phi} \sum _{T_i} L _{D'_i}(f _{\theta'_i})
+$$
+
 #### Implementing:
 Generator network $g_φ$ is a 3-layer MLP with ReLU activation between the layers.
 The task specific learning state is reduce into layer-wise mean of gradients and weights thus resulting in 2 state values per layer.
@@ -140,8 +218,13 @@ The task specific learning state is reduce into layer-wise mean of gradients and
 For outputs, the learning rate $\alpha^1_{i,j}$ and the weight-decay term $\beta^1_{i,j}$ are first generated layer-wise and then repeated to the dimensions of the respective parameters $\theta_{i,j}$.
 The learning rate and weight-decay terms are generated at the $j$-th step for the task $T_i$ as follows:
 
-$$\alpha_{i,j} = \alpha^0_{i,j} \odot \alpha^1_{i,j}(\bar{\tau}_{i,j})$$
-$$\beta_{i,j} = \beta^0_{i,j} \odot \beta^1_{i,j}(\bar{\tau}_{i,j})$$
+$$
+\alpha_{i,j} = \alpha^0_{i,j} \odot \alpha^1_{i,j}(\bar{\tau}_{i,j})
+$$
+
+$$
+\beta_{i,j} = \beta^0_{i,j} \odot \beta^1_{i,j}(\bar{\tau}_{i,j})
+$$
 
 where:
 - $\alpha^0_{i,j}, \beta^0_{i,j}$ are meta-learnable post-multipliers
@@ -159,6 +242,8 @@ Architecture: 3 linear layer with LeakyRelu() activation. The last layer output 
 $$
 	scale = \frac{1}{m}(\sum_{i = 0}^m{F_{meta}(x_i)})
 $$
+> [!note] 
+> Using stastiscal: variance, std to calculate scale
 ## Experiment
 
 Dataset:
@@ -191,14 +276,24 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 
 ## Result
 
+### Comparison on multiple methodologies
+
+>[!note]
+>Comparion on multiple feature extractor: resnet, vgg,...
+>Comparison on tabluar (5) and image (5): 
+>	- tablular: ’Colon Cancer’(Alon et al. (1999)) and ’Leukemia’(Golub et al. (1999)) 	
+>Comparison in multple distance metrics
+
+
+
 | Method                                                                              | Dataset     | ACC   | NMI   | PURITY |
 | ----------------------------------------------------------------------------------- | ----------- | ----- | ----- | ------ |
 | Using Resnet18 as Feature Extractor<br>\+ Siamese Net                               | MRSC        | 0.868 | 0.882 | 0.901  |
-|                                                                                     | MNIST       |       |       |        |
+|                                                                                     | MNIST       | 0.836 | 0.892 | 0.933  |
 |                                                                                     | Caltech-101 | 0.332 | 0.601 | 0.401  |
 |                                                                                     | prokaryotic | 0.35  | 0.312 | 0.579  |
 | Using Resnet18 as Feature Extractor<br>\+ Using Gaussian scale: 20 nearest neighbor | MRSC        | 0.669 | 0.806 | 0.899  |
-|                                                                                     | MNIST       |       |       |        |
+|                                                                                     | MNIST       | 0.646 | 0.778 | 0.927  |
 |                                                                                     | Caltech-101 | 0.364 | 0.581 | 0.396  |
 |                                                                                     | prokaryotic | 0.339 | 0.18  | 0.526  |
 | Using Resnet18 as Feature Extractor<br>\+ Using Gaussian scale: all dataset         | MRSC        | 0.794 | 0.856 | 0.895  |
@@ -206,11 +301,38 @@ $$Purity = (1/N) * Σ(k) max(n_k^i)$$
 |                                                                                     | Caltech-101 | 0.33  | 0.593 | 0.374  |
 |                                                                                     | prokaryotic |       |       |        |
 | Using Resnet18 as Feature Extractor<br>\+ Meta learning to find Gaussian scale      | MRSC        | 0.493 | 0.495 | 0.535  |
-|                                                                                     | MNIST       |       |       |        |
+|                                                                                     | MNIST       | 0.47  | 0.389 | 0.533  |
 |                                                                                     | Caltech-101 | 0.121 | 0.272 | 0.464  |
 |                                                                                     | prokaryotic | 0.468 | 0.181 | 0.711  |
 
+Except for `prokaryotic` dataset, Meta learning performed worse than all other approaches. 
+Not work on image dataset
+### Comparison on the affect of selecting Gaussian scale
+Nearest neighbor: 100
+- **prokaryotic:**
+
+| gauss_scale   | acc   | nmi   | purity |
+| ------------- | ----- | ----- | ------ |
+| 5             | 0.541 | 0.451 | 0.77   |
+| 10            | 0.534 | 0.279 | 0.789  |
+| 20            | 0.55  | 0.459 | 0.78   |
+| 30            | 0.539 | 0.464 | 0.775  |
+| 50            | 0.544 | 0.429 | 0.77   |
+| full neighbor | 0.559 | 0.46  | 0.791  |
+- **MRSC**:
+
+|gauss_scale|acc|nmi|purity|
+|---|---|---|---|
+|5|0.671|0.797|0.897|
+|10|0.73|0.836|0.897|
+|20|0.667|0.796|0.895|
+|30|0.669|0.812|0.904|
+|50|0.735|0.839|0.901|
+|Full neightbor|0.73|0.842|0.897|
+
+
 # To do:
+- Testing on multiple Gaussian scale
 - Research multi-view clustering approach
 - Optimize meta learning cluster with better adaptive loss: 
 Tuning K for clustering: https://www.sciencedirect.com/science/article/abs/pii/S0950705120301209
