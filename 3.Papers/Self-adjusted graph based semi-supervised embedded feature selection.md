@@ -32,7 +32,7 @@ The graph-based semi-supervised learning models construct a graph by using all t
 
 Ranks features by calculating a score $s_j$ for the j−th feature
 $$
-	s_j=\lambda \frac{\sum_{i, h=l+1}^{l+u}\left(g_i-g_h\right)^2 \times a_{i h}}{2 \sum_{i, h=l+1}^{l+u} g_i^2 \times \mathbf{d}_i}+(1-\lambda)\left(1-\operatorname{NMI}\left(\hat{\mathbf{g}}, \mathbf{Y}_L\right)\right)
+s_j=\lambda \frac{\sum_{i, h=l+1}^{l+u}\left(g_i-g_h\right)^2 \times a_{i h}}{2 \sum_{i, h=l+1}^{l+u} g_i^2 \times \mathbf{d}_i}+(1-\lambda)\left(1-\operatorname{NMI}\left(\hat{\mathbf{g}}, \mathbf{Y}_L\right)\right)
 $$
 
 #### Initialize similarity graph
