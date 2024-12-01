@@ -56,8 +56,8 @@ Suppose that close data points, measured as $‖xi − xj‖$, have high affinit
 inital similarity graph is learned by optimizing: 
 $$
 	\begin{gathered}
-	\min _{\mathbf{A}} \sum_{j=1}^n\left\|\mathbf{x}_i-\mathbf{x}_j\right\|_2^2 a_{i j}+\theta \sum_{j=1}^n a_{i j}^2 \\
-	\text { s.t. } \mathbf{a}_i^T \mathbf{1}=1, \mathbf{a}_i \geq \mathbf{0}
+	\min _{\mathbf{A}} \sum _{j=1}^n\left\|\mathbf{x} _i-\mathbf{x} _j\right\| _2^2 a _{i j}+\theta \sum _{j=1}^n a _{i j}^2 \\
+	\text { s.t. } \mathbf{a} _i^T \mathbf{1}=1, \mathbf{a} _i \geq \mathbf{0}
 	\end{gathered}
 $$
 #### Optimize function:
