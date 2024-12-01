@@ -39,11 +39,19 @@ e^{\frac{-\left\|\mathbf{x}_i-x_j\right\|^2}{2 a^2}} & \text { if } \mathbf{x}_i
 $F =[F_l;F_u]∈ ℝ^{n×c}$ is a predicted label matrix consisting of $F_l$ and $F_u$, in which $F_l$ are consistent with the known labels $Y_l$ and $F_u$ is unknown variable.
 
 $F$ can be computed through solving the following function:
-$$\begin{array}{ll}
-\min _{\mathbf{F}} \sum_{i, j}\left\|\mathbf{f}_i-\mathbf{f}_j\right\|^2 a_{i j}=\min _{\mathbf{F}} \operatorname{Tr}\left(\mathbf{F}^T \mathbf{L F}\right) \\
-\text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l
-\end{array}$$
+$$
+  \begin{array}{ll}
+  \min _{\mathbf{F}} \sum _{i, j} \left\|\mathbf{f}_i-\mathbf{f}_j\right\|^2 a_{i j}=\min _{\mathbf{F}} \operatorname{Tr} \left(\mathbf{F}^T \mathbf{L F}\right) \\
+  \text { s.t. } \quad \mathbf{F} _l=\mathbf{Y} _l
+\end{array}
+$$
 
+$$
+	\begin{aligned}
+	\boldsymbol{\theta} _{i, j+1} & =\boldsymbol{\theta} _{i, j}-\alpha \left(\nabla _{\boldsymbol{\theta}} \mathcal{L} _{\mathcal{T}_i}^{\mathcal{D}_i} \left(f _{\boldsymbol{\theta} _{i, j}}\right) + \lambda \boldsymbol{\theta} _{i, j}\right)\\
+	& =\beta \boldsymbol{\theta} _{i, j} - \alpha \nabla _{\boldsymbol{\theta}} \mathcal{L} _{\mathcal{T}_i}^{\mathcal{D}_i} \left(f _{\boldsymbol{\theta} _{i, j}}\right)
+	\end{aligned}
+$$
 #### Semi-supervised feature selectrion 
 
 Ranks features by calculating a score $s_j$ for the j−th feature
