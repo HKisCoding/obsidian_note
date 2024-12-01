@@ -66,10 +66,10 @@ Suppose that close data points, measured as $‖xi − xj‖$, have high affinit
 inital similarity graph is learned by optimizing: 
 
 $$
-	\begin{gathered}
-	\min _{\mathbf{A}} \sum _{j=1}^n\left\|\mathbf{x} _i-\mathbf{x} _j\right\| _2^2 a _{i j}+\theta \sum _{j=1}^n a _{i j}^2 \\
-	\text { s.t. } \mathbf{a} _i^T \mathbf{1}=1, \mathbf{a} _i \geq \mathbf{0}
-	\end{gathered}
+\begin{gathered}
+\min _{\mathbf{A}} \sum _{j=1}^n\left\|\mathbf{x} _i-\mathbf{x} _j\right\| _2^2 a _{i j}+\theta \sum _{j=1}^n a _{i j}^2 \\
+\text { s.t. } \mathbf{a} _i^T \mathbf{1}=1, \mathbf{a} _i \geq \mathbf{0}
+\end{gathered}
 $$
 
 #### Optimize function:
@@ -78,8 +78,8 @@ $$
 
 $$
 \begin{gathered}
-\min _{\mathbf{W}, \mathbf{b}} \frac{1}{n} \sum_{i=1}^n\left\|\mathbf{W}^T \mathbf{x}_i+\mathbf{b}-\mathbf{y}_i^T\right\|^2+\lambda_A\|\mathbf{W}\|^2 \\
-+\lambda_I \operatorname{Tr}\left(\mathbf{W}^T \mathbf{X} \mathbf{L} \mathbf{X}^T \mathbf{W}\right)
+\min _{\mathbf{W}, \mathbf{b}} \frac{1}{n} \sum_{i=1}^n\left\|\mathbf{W}^T \mathbf{x}_i+\mathbf{b}-\mathbf{y}_i^T\right\|^2+ \lambda_A \|\mathbf{W}\|^2 \\
++\lambda_I \mathcal{Tr} \left(\mathbf{W}^T \mathbf{X} \mathbf{L} \mathbf{X}^T \mathbf{W}\right)
 \end{gathered}
 $$
 
@@ -87,7 +87,7 @@ Or:
 
 $$
 \begin{aligned}
-& \min _{\mathbf{W}, \mathbf{F}, \mathbf{F}} \alpha \operatorname{Tr}\left(\mathbf{F}^T \mathbf{L F}\right)+\beta \| \mathbf{X}^T \mathbf{W}+\mathbf{1 \mathbf { b } ^ { T } - \mathbf { F } \| _ { F } ^ { 2 } + \gamma \| \mathbf { W } \| _ { 2 , p } ^ { p }} \\
+& \min _{\mathbf{W}, \mathbf{F}, \mathbf{F}} \alpha \mathcal{Tr}\left(\mathbf{F}^T \mathbf{L F}\right)+\beta \| \mathbf{X}^T \mathbf{W}+\mathbf{1 \mathbf { b } ^ { T } - \mathbf { F } \| _ { F } ^ { 2 } + \gamma \| \mathbf { W } \| _ { 2 , p } ^ { p }} \\
 & \text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l
 \end{aligned}
 $$
@@ -96,7 +96,7 @@ To learn the sparse matric S to approximate the pre-defined A SAGFS framework wi
 
 $$
 \begin{aligned}
-& g(\mathbf{S}, \mathbf{W}, \mathbf{F}, \mathbf{b})=\min _{\mathbf{s}, \mathbf{W}, \mathbf{b}, \mathbf{F}}\|\mathbf{S}-\mathbf{A}\|_F^2+\alpha \operatorname{Tr}\left(\mathbf{F}^T \mathbf{L}_S \mathbf{F}\right) \\
+& g(\mathbf{S}, \mathbf{W}, \mathbf{F}, \mathbf{b})=\min _{\mathbf{s}, \mathbf{W}, \mathbf{b}, \mathbf{F}}\|\mathbf{S}-\mathbf{A}\|_F^2+\alpha \mathcal{Tr}\left(\mathbf{F}^T \mathbf{L}_S \mathbf{F}\right) \\
 & \quad+\beta\left\|\mathbf{X}^T \mathbf{W}+\mathbf{1 b}^T-\mathbf{F}\right\|_F^2+\gamma\|\mathbf{W}\|_{2, p}^p \\
 & \text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l, \mathbf{S} \geq 0, \mathbf{S} \mathbf{1}=\mathbf{1}
 \end{aligned}
