@@ -31,66 +31,53 @@ A novel graph-based semi-supervised embedded feature selection model that learns
 ## Methodology 
 
 The graph-based semi-supervised learning models construct a graph by using all training data -> Construct the similarity matrix  with Gaussian function 
-$$
-a_{i j}=\left\{\begin{array}{cl}
+$$a_{i j}=\left\{\begin{array}{cl}
 e^{\frac{-\left\|\mathbf{x}_i-x_j\right\|^2}{2 a^2}} & \text { if } \mathbf{x}_i \in N_k\left(\mathbf{x}_j\right) \text { or } \mathbf{x}_j \in N_k\left(\mathbf{x}_i\right) \\
 0 & \text { otherwise }
-\end{array}\right.
-$$
+\end{array}\right.$$
+
 $F =[F_l;F_u]∈ ℝ^{n×c}$ is a predicted label matrix consisting of $F_l$ and $F_u$, in which $F_l$ are consistent with the known labels $Y_l$ and $F_u$ is unknown variable.
 
 $F$ can be computed through solving the following function:
-$$
-\begin{array}{ll}
+$$\begin{array}{ll}
 \min _{\mathbf{F}} \sum_{i, j}\left\|\mathbf{f}_i-\mathbf{f}_j\right\|^2 a_{i j}=\min _{\mathbf{F}} \operatorname{Tr}\left(\mathbf{F}^T \mathbf{L F}\right) \\
 \text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l
-\end{array}
-$$
+\end{array}$$
 
 #### Semi-supervised feature selectrion 
 
 Ranks features by calculating a score $s_j$ for the j−th feature
-$$
-s_j=\lambda \frac{\sum_{i, h=l+1}^{l+u}\left(g_i-g_h\right)^2 \times a_{i h}}{2 \sum_{i, h=l+1}^{l+u} g_i^2 \times \mathbf{d}_i}+(1-\lambda)\left(1-\text{NMI}\left(\hat{\mathbf{g}}, \mathbf{Y}_L\right)\right)
-$$
+$$s_j=\lambda \frac{\sum_{i, h=l+1}^{l+u}\left(g_i-g_h\right)^2 \times a_{i h}}{2 \sum_{i, h=l+1}^{l+u} g_i^2 \times \mathbf{d}_i}+(1-\lambda)\left(1-\text{NMI}\left(\hat{\mathbf{g}}, \mathbf{Y}_L\right)\right)$$
 the similarity matrix $A$ is also calculated using Gaussian function
 #### Initialize similarity graph
 
 Suppose that close data points, measured as $‖xi − xj‖$, have high affinity values of A and constrain each row of A with l2-norm as the regularization to obtain the affinity values of A
 
 inital similarity graph is learned by optimizing: 
-$$
-\begin{gathered}
+$$\begin{gathered}
 \min _{\mathbf{A}} \sum_{j=1}^n\left\|\mathbf{x}_i-\mathbf{x}_j\right\|_2^2 a_{i j}+\theta \sum_{j=1}^n a_{i j}^2 \\
 \text { s.t. } \mathbf{a}_i^T \mathbf{1}=1, \mathbf{a}_i \geq \mathbf{0}
-\end{gathered}
-$$
+\end{gathered}$$
 #### Optimize function:
 
-- Manifold regularization: W and b estimated by $$
-\begin{gathered}
+- Manifold regularization: W and b estimated by 
+$$\begin{gathered}
 \min _{\mathbf{W}, \mathbf{b}} \frac{1}{n} \sum_{i=1}^n\left\|\mathbf{W}^T \mathbf{x}_i+\mathbf{b}-\mathbf{y}_i^T\right\|^2+\lambda_A\|\mathbf{W}\|^2 \\
 +\lambda_I \operatorname{Tr}\left(\mathbf{W}^T \mathbf{X} \mathbf{L} \mathbf{X}^T \mathbf{W}\right)
-\end{gathered}
-$$
+\end{gathered}$$
 Or:
-
-$$
-\begin{aligned}
+$$\begin{aligned}
 & \min _{\mathbf{W}, \mathbf{F}, \mathbf{F}} \alpha \operatorname{Tr}\left(\mathbf{F}^T \mathbf{L F}\right)+\beta \| \mathbf{X}^T \mathbf{W}+\mathbf{1 \mathbf { b } ^ { T } - \mathbf { F } \| _ { F } ^ { 2 } + \gamma \| \mathbf { W } \| _ { 2 , p } ^ { p }} \\
 & \text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l
-\end{aligned}
-$$
+\end{aligned}$$
 
 To learn the sparse matric S to approximate the pre-defined A SAGFS framework with self-adjusted graph is formulated as:
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 & g(\mathbf{S}, \mathbf{W}, \mathbf{F}, \mathbf{b})=\min _{\mathbf{s}, \mathbf{W}, \mathbf{b}, \mathbf{F}}\|\mathbf{S}-\mathbf{A}\|_F^2+\alpha \operatorname{Tr}\left(\mathbf{F}^T \mathbf{L}_S \mathbf{F}\right) \\
 & \quad+\beta\left\|\mathbf{X}^T \mathbf{W}+\mathbf{1 b}^T-\mathbf{F}\right\|_F^2+\gamma\|\mathbf{W}\|_{2, p}^p \\
 & \text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l, \mathbf{S} \geq 0, \mathbf{S} \mathbf{1}=\mathbf{1}
-\end{aligned}
-$$
+\end{aligned}$$
 Assumption that two close points on the learned graph S have similar properties, such that the graph S ’s manifold smoothness could be enhanced. Through the optimal sparse graph regularization, the geometrical structure could be embedded into the manifold learning, which retains the most important information.
 
 
