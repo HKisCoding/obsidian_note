@@ -54,10 +54,12 @@ the similarity matrix $A$ is also calculated using Gaussian function
 Suppose that close data points, measured as $‖xi − xj‖$, have high affinity values of A and constrain each row of A with l2-norm as the regularization to obtain the affinity values of A
 
 inital similarity graph is learned by optimizing: 
-$$\begin{gathered}
-\min _{\mathbf{A}} \sum_{j=1}^n\left\|\mathbf{x}_i-\mathbf{x}_j\right\|_2^2 a_{i j}+\theta \sum_{j=1}^n a_{i j}^2 \\
-\text { s.t. } \mathbf{a}_i^T \mathbf{1}=1, \mathbf{a}_i \geq \mathbf{0}
-\end{gathered}$$
+$$
+	\begin{gathered}
+	\min _{\mathbf{A}} \sum_{j=1}^n\left\|\mathbf{x}_i-\mathbf{x}_j\right\|_2^2 a_{i j}+\theta \sum_{j=1}^n a_{i j}^2 \\
+	\text { s.t. } \mathbf{a}_i^T \mathbf{1}=1, \mathbf{a}_i \geq \mathbf{0}
+	\end{gathered}
+$$
 #### Optimize function:
 
 - Manifold regularization: W and b estimated by 
