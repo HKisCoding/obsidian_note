@@ -39,10 +39,11 @@ e^{\frac{-\left\|\mathbf{x}_i-x_j\right\|^2}{2 a^2}} & \text { if } \mathbf{x}_i
 $F =[F_l;F_u]∈ ℝ^{n×c}$ is a predicted label matrix consisting of $F_l$ and $F_u$, in which $F_l$ are consistent with the known labels $Y_l$ and $F_u$ is unknown variable.
 
 $F$ can be computed through solving the following function:
+
 $$
 \begin{aligned}
 \min _{\mathbf{F}} \sum _{i, j} \left\|\mathbf{f}_i-\mathbf{f}_j\right\|^2 a _{i j}=\min _{\mathbf{F}} \mathcal{Tr} \left(\mathbf{F}^T \mathbf{L F}\right) \\
-% \text { s.t. } \quad \mathbf{F}_l = \mathbf{Y}_l
+\text { s.t. } \quad \mathbf{F}_l = \mathbf{Y}_l
 \end{aligned}
 $$
 
