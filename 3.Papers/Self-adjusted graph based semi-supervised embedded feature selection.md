@@ -33,10 +33,11 @@ A novel graph-based semi-supervised embedded feature selection model that learns
 The graph-based semi-supervised learning models construct a graph by using all training data -> Construct the similarity matrix  with Gaussian function 
 
 $$
-a_{i j}=\left\{\begin{array}{cl}
-e^{\frac{-\left\|\mathbf{x}_i-x_j\right\|^2}{2 a^2}} & \text { if } \mathbf{x}_i \in N_k\left(\mathbf{x}_j\right) \text { or } \mathbf{x}_j \in N_k\left(\mathbf{x}_i\right) \\
-0 & \text { otherwise }
-\end{array}\right.
+a_{i j}=
+	\begin{cases}
+	e^{\frac{-\left\|\mathbf{x}_i-x_j\right\|^2}{2 a^2}}, & \text { if } \mathbf{x}_i \in N_k\left(\mathbf{x}_j\right) \text { or } \mathbf{x}_j \in N_k\left(\mathbf{x}_i\right) \\
+	0, & \text { otherwise }
+	\end{cases}
 $$
 
 $F =[F_l;F_u]∈ ℝ^{n×c}$ is a predicted label matrix consisting of $F_l$ and $F_u$, in which $F_l$ are consistent with the known labels $Y_l$ and $F_u$ is unknown variable.
