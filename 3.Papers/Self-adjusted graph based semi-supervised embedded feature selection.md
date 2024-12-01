@@ -41,8 +41,8 @@ $F =[F_l;F_u]∈ ℝ^{n×c}$ is a predicted label matrix consisting of $F_l$ and
 $F$ can be computed through solving the following function:
 $$
   \begin{array}{ll}
-  \min _{\mathbf{F}} \sum _{i, j} \left\|\mathbf{f}_i-\mathbf{f}_j\right\|^2 a_{i j}=\min _{\mathbf{F}} \operatorname{Tr} \left(\mathbf{F}^T \mathbf{L F}\right) \\
-  \text { s.t. } \quad \mathbf{F} _l=\mathbf{Y} _l
+  \min _{\mathbf{F}} \sum_{i, j} \left\|\mathbf{f}_i-\mathbf{f}_j\right\|^2 a_{i j}=\min_{\mathbf{F}} \operatorname{Tr} \left(\mathbf{F}^T \mathbf{L F}\right) \\
+  \text { s.t. } \quad \mathbf{F}_l=\mathbf{Y}_l
 \end{array}
 $$
 
